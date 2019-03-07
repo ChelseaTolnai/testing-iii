@@ -53,4 +53,16 @@ describe('<Display />', () => {
         })
     });
 
+    it('confirm display panel children are displaying defualt text', () => {
+        const { getByText } = render(<Display />);
+
+        const Unlocked = getByText(/Unlocked/i);
+        expect(Unlocked).toBeInTheDocument();
+        expect(Unlocked.textContent).toBe('Unlocked');
+
+        const Open = getByText(/Open/i);
+        expect(Open).toBeInTheDocument();
+        expect(Open.textContent).toBe('Open');
+    });
+
 })
