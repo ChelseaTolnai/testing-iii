@@ -57,4 +57,22 @@ describe('<Controls />', () => {
 
     });
 
+    it('should call the toggleLocked() function passed as props', () => {
+        const toggleLocked = jest.fn();
+        
+		const { getByText } = render(<Controls toggleLocked={toggleLocked} />);
+
+        fireEvent.click(getByText(/Lock Gate/i));
+        expect(toggleLocked).toHaveBeenCalled;
+    });
+
+    it('should call the toggleClosed() function  passed as props', () => {
+        const toggleClosed = jest.fn();
+        
+		const { getByText } = render(<Controls toggleClosed={toggleClosed} />);
+        
+        fireEvent.click(getByText(/Close Gate/i));
+        expect(toggleClosed).toHaveBeenCalled;
+    });
+
 })
