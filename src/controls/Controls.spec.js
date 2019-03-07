@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
@@ -42,16 +42,19 @@ describe('<Controls />', () => {
         })
     });
 
-    it('confirm controls panel children are displaying defualt text', () => {
+    it('confirm controls panel children are displaying defualt text and value', () => {
         const { getByText } = render(<Controls />);
 
         const lockGate = getByText(/Lock Gate/i);
         expect(lockGate).toBeInTheDocument();
         expect(lockGate.textContent).toBe('Lock Gate');
+        expect(lockGate.disabled).toBe(true);
 
         const closeGate = getByText(/Close Gate/i);
         expect(closeGate).toBeInTheDocument();
         expect(closeGate.textContent).toBe('Close Gate');
+        expect(closeGate.disabled).toBe(false);
+
     });
 
 })
